@@ -1,0 +1,50 @@
+#!/usr/bin/env bash
+
+# Show a usage message and exit.
+function usage() {
+    echo "usage: makegituser [ --home HOME_DIR ] [ --username USERNAME ]"
+    echo "    HOME_DIR defaults to '/usr/local/git'"
+    echo "    USERNAME defaults to 'git'"
+    exit 1;
+}
+
+# Establish defaults.
+GIT_USER="git"
+GIT_HOMEDIR="/usr/local/git"
+
+# Parse arguments.
+if [ $# -ge 2 ] && [ $# -ne 3 ]; then
+    case $1 in
+        --home)
+            GIT_HOMEDIR=$2
+            ;;
+        --username)
+            GIT_USER=$2
+            ;;
+        *)
+            usage
+            ;;
+    esac
+elif [ $# -eq 4 ]; then
+    case $3 in
+        --home)
+            GIT_HOMEDIR=$4
+            ;;
+        --username)
+            GIT_USER=$4
+            ;;
+        *)
+            usage
+            ;;
+    esac
+elif [ $# -ne 0 ]; then
+    usage
+fi
+
+adduser --shell /bin/sh \
+    --gecos 'git version control' \
+    --home $GIT_HOMEDIR \
+    --disabled-password \
+    --system \
+    --group  \
+    $GIT_USER
