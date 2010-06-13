@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+# Get rid of the old authorized keys and replace them with the new ones.
+
+cd ~/.ssh
+rm authorized_keys2
+
+git clone ~/mini-meta.git mini-meta
+for key in mini-meta/*.pub; do
+    cat $key >> authorized_keys2
+done
+rm -rf mini-meta
