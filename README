@@ -15,6 +15,7 @@ in your way.
 
 Really simple, but that's all I want.
 
+
 Installation
 ================================================================================
 
@@ -35,7 +36,39 @@ $ git add *
 $ git commit -m "Initial commit, adding my public key forreal-sies"
 $ git push origin master
 
-TODO
+
+Repository Management and Administration
 ================================================================================
 
-* Automatically ``git --bare init`` new repositories via the post-receive hook.
+Authentication
+--------------------------------------------------------------------------------
+
+To give a user access to your repositories, just add their ssh public key to
+your mini-meta repository and run `git push origin master`.
+
+To remove a user's access, just remove their ssh public key from the mini-meta
+repo and `git push origin master`.
+
+That is all there is to it.
+
+Adding/Creating Repositories
+--------------------------------------------------------------------------------
+
+FIRST create a "repositories" file in you mini-meta repository, if you do not
+already have one. Append the names of the repo(s) you wish to create/host to the
+"repositories" file on individual lines. Run `git push origin master` to sync
+the git user with your mini-meta configurations.
+
+IF YOU ARE CREATING NEW REPOSITORIES you can now checkout the empty repo(s) you
+just created, via `git clone git@your_domain.com:your_repo.git`. Make commits,
+have fun, `git push origin master`.
+
+IF YOU ARE ADDING EXISTING REPOSITORIES you can now `git remote add REMOTE_NAME
+git@your_domain.com:your_repo.git` to add the newly created repo as a remote to
+your existing repo, and `git push REMOTE_NAME --all` to sync the new remote with
+your repository.
+
+Deleting Repositories
+--------------------------------------------------------------------------------
+
+Not yet implemented. Just do it via sudo.
