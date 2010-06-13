@@ -9,8 +9,8 @@ hook=`pwd`/post-receive
 
 cd ~git/
 
-mkdir mini-meta.git
-cd mini-meta.git
+mkdir mini-meta-admin.git
+cd mini-meta-admin.git
 
 git --bare init
 cp $hook hooks/

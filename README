@@ -9,7 +9,7 @@ post-receive hooks that need to ssh in to other servers, and gitosis's git user
 really doesn't play nice with sshing elsewhere.
 
 Basically, all this adds on top of a normal git server is authentication (NOT
-authorization or permissions) via the mini-meta repo, which is just a repo
+authorization or permissions) via the mini-meta-admin repo, which is just a repo
 containing ssh public keys. It let's you take care of the rest without getting
 in your way.
 
@@ -29,8 +29,8 @@ $ sudo ./tempinstallfirstkey $PATH_TO_YOUR_KEY.pub
 Cloning the authentication repository and permanently adding your public key
 --------------------------------------------------------------------------------
 
-$ git clone git@yourdomain.com:mini-meta.git
-$ cd mini-meta
+$ git clone git@yourdomain.com:mini-meta-admin.git
+$ cd mini-meta-admin
 $ cp $PATH_TO_YOUR_KEY.pub .
 $ git add *
 $ git commit -m "Initial commit, adding my public key forreal-sies"
@@ -44,20 +44,20 @@ Authentication
 --------------------------------------------------------------------------------
 
 To give a user access to your repositories, just add their ssh public key to
-your mini-meta repository and run `git push origin master`.
+your mini-meta-admin repository and run `git push origin master`.
 
-To remove a user's access, just remove their ssh public key from the mini-meta
-repo and `git push origin master`.
+To remove a user's access, just remove their ssh public key from the
+mini-meta-admin repo and `git push origin master`.
 
 That is all there is to it.
 
 Adding/Creating Repositories
 --------------------------------------------------------------------------------
 
-FIRST create a "repositories" file in you mini-meta repository, if you do not
-already have one. Append the names of the repo(s) you wish to create/host to the
-"repositories" file on individual lines. Run `git push origin master` to sync
-the git user with your mini-meta configurations.
+FIRST create a "repositories" file in your mini-meta-admin repository, if you do
+not already have one. Append the names of the repo(s) you wish to create/host to
+the "repositories" file on individual lines. Run `git push origin master` to
+sync the git user with your mini-meta-admin configurations.
 
 IF YOU ARE CREATING NEW REPOSITORIES you can now checkout the empty repo(s) you
 just created, via `git clone git@your_domain.com:your_repo.git`. Make commits,
