@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+hook=`pwd`/post-receive
+
+cd ~git/
+
+mkdir mini-meta.git
+cd mini-meta.git
+
+git --bare init
+cp $hook hooks/
+
+chown -R git:git .

@@ -48,3 +48,8 @@ adduser --shell /bin/sh \
     --system \
     --group  \
     $GIT_USER
+
+cd $GIT_HOMEDIR
+mkdir .ssh
+chown -R git:git .ssh
+chmod 700 .ssh

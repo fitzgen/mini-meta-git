@@ -1,0 +1,19 @@
+Installation
+============
+
+Creating the git user and authentication repository
+---------------------------------------------------
+
+$ sudo ./makegituser
+$ sudo ./makeauthrepo
+$ sudo ./tempinstallfirstkey $PATH_TO_YOUR_KEY.pub
+
+Cloning the authentication repository and permanently adding your public key
+----------------------------------------------------------------------------
+
+$ git clone git@yourdomain.com:mini-meta.git
+$ cd mini-meta
+$ cp $PATH_TO_YOUR_KEY.pub .
+$ git add *
+$ git commit -m "Initial commit"
+$ git push origin master
