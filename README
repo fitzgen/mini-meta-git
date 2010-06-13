@@ -1,19 +1,41 @@
+What is Mini Meta Git?
+===============================================================================
+
+I got tired of trying to make gitosis do what I want it to do, so this is a set
+of scripts that do everything I need for my git repository management. I didn't
+need any of the fine grained permissions for my repos, I just wanted something
+that would authenticate based on ssh public keys. I also happen to have a few
+post-receive hooks that need to ssh in to other servers, and gitosis's git user
+really doesn't play nice with sshing elsewhere.
+
+Basically, all this adds on top of a normal git server is authentication (NOT
+authorization or permissions) via the mini-meta repo, which is just a repo
+containing ssh public keys. It let's you take care of the rest without getting
+in your way.
+
+Really simple, but that's all I want.
+
 Installation
-============
+================================================================================
 
 Creating the git user and authentication repository
----------------------------------------------------
+--------------------------------------------------------------------------------
 
 $ sudo ./makegituser
 $ sudo ./makeauthrepo
 $ sudo ./tempinstallfirstkey $PATH_TO_YOUR_KEY.pub
 
 Cloning the authentication repository and permanently adding your public key
-----------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 
 $ git clone git@yourdomain.com:mini-meta.git
 $ cd mini-meta
 $ cp $PATH_TO_YOUR_KEY.pub .
 $ git add *
-$ git commit -m "Initial commit"
+$ git commit -m "Initial commit, adding my public key forreal-sies"
 $ git push origin master
+
+TODO
+================================================================================
+
+* Automatically ``git --bare init`` new repositories via the post-receive hook.
