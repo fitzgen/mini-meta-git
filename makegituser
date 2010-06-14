@@ -46,13 +46,7 @@ elif [ $# -ne 0 ]; then
     usage
 fi
 
-adduser --shell /bin/sh \
-    --gecos 'git version control' \
-    --home $GIT_HOMEDIR \
-    --disabled-password \
-    --system \
-    --group  \
-    $GIT_USER
+pw useradd $GIT_USER -c "git version control" -d $GIT_HOMEDIR -m -s "/bin/sh" -h -
 
 cd $GIT_HOMEDIR
 mkdir .ssh
