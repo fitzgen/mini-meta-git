@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 cd ~/
-git clone mini-meta.git _temp
+git clone mini-meta-admin.git _temp
 
 # Get rid of the old authorized keys and replace them with the new ones.
 
